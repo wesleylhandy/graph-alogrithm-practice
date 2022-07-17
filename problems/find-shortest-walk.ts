@@ -1,14 +1,14 @@
-import { generateStreetBlocks } from "../data/street-blocks";
 import { isNumber } from "../utils/is-number";
 
 // TODO: Consider Allowing Grid of Street Blocks, and Adding Generation of Adjacency List
 // TODO: Consider changing return type to list all the blocks matching shortest walk rather than a single block
 
 export type BlockWithShortestWalk = [number, number] | [null, null]
+export type StreetBlock = Record<string, boolean>;
 
 interface FindShortestWalkArgs {
     preferredFeatures: string[];
-    blocks: ReturnType<typeof generateStreetBlocks>;
+    blocks: StreetBlock[];
 }
 
 /**
@@ -45,7 +45,7 @@ export function findShortestWalk({
 }
 
 interface CalculateGraphDistanceArgs {
-    blocks: ReturnType<typeof generateStreetBlocks>;
+    blocks: StreetBlock[];
     graphRecords: ReturnType<typeof generateEmptyGraphRecords>;
     index: number;
     preferredFeatures: string[];
@@ -78,7 +78,7 @@ function calculateGraphDistance({
 }
 
 interface FindClosestFeatureArgs {
-    blocks: ReturnType<typeof generateStreetBlocks>;
+    blocks: StreetBlock[];
     indexToSearch: number;
     feature: string;
     graphRecords: ReturnType<typeof generateEmptyGraphRecords>;
@@ -117,7 +117,7 @@ function findClosestFeature({
 
 type GraphRecord = Record<string, number | null>;
 
-function generateEmptyGraphRecords(blocks: ReturnType<typeof generateStreetBlocks>): GraphRecord[] {
+function generateEmptyGraphRecords(blocks: StreetBlock[]): GraphRecord[] {
     return blocks.map((value, index) => {
         const graph: GraphRecord = {};
         Object.keys(value).forEach(key => {
