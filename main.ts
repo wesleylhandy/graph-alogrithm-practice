@@ -10,7 +10,7 @@ function main(): void {
 
     const blocks = generateStreetBlocks(availableFeatures, numberOfStreetBlocks);
     console.log(blocks);
-    
+
     console.log(findShortestWalk({
         blocks,
         preferredFeatures,

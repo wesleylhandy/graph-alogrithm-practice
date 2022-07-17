@@ -2,6 +2,7 @@ import { generateStreetBlocks } from "../data/street-blocks";
 import { isNumber } from "../utils/is-number";
 
 // TODO: Consider Allowing Grid of Street Blocks, and Adding Generation of Adjacency List
+// TODO: Consider changing return type to list all the blocks matching shortest walk rather than a single block
 
 export type BlockWithShortestWalk = [number, number] | [null, null]
 
